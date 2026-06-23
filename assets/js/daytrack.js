@@ -89,7 +89,7 @@ const ApiClient = {
    * Internal fetch wrapper.
    * Returns parsed JSON data on success, or null on error.
    */
-  async _fetch(endpoint, method = 'GET', body = null) {
+async _fetch(endpoint, method = 'GET', body = null) {
     const base = (typeof API !== 'undefined') ? API : '../../api';
     const url  = `${base}/${endpoint}`;
     const opts = {
@@ -101,9 +101,13 @@ const ApiClient = {
     try {
       const res  = await fetch(url, opts);
       const json = await res.json();
-      if (!json.success) {
-        console.warn(`[ApiClient] ${method} ${url} →`, json.error || 'unknown error');
-        if (json.error && json.error.includes('Unauthorized')) {
+      
+      // PERBAIKAN: Pastikan objek json tidak null/undefined sebelum membaca propertinya
+      if (!json || json.success === false || !json.success) {
+        const errMsg = json && json.error ? json.error : 'unknown error';
+        console.warn(`[ApiClient] ${method} ${url} →`, errMsg);
+        
+        if (errMsg.includes('Unauthorized')) {
           window.location.href = 'login.php';
         }
         return null;
@@ -111,7 +115,10 @@ const ApiClient = {
       return json.data ?? json;
     } catch (err) {
       console.error('[ApiClient] Network error:', err);
-      showToast('Network error. Please check your connection.', 'danger');
+      // Mencegah penumpukan toast jika terjadi error beruntun akibat klik ganda
+      if (!document.getElementById('dt-toast')) {
+        showToast('Network error. Please check your connection.', 'danger');
+      }
       return null;
     }
   },

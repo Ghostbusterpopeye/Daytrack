@@ -68,51 +68,51 @@ $userInitial = strtoupper(($currentUser['name'] ?? 'U')[0]);
     <div class="p-6 max-w-2xl mx-auto">
 
       <!-- ── PROFILE HERO ── -->
-      <div class="bg-white rounded-2xl border border-gray-100 shadow-sm mb-6 overflow-hidden fade-in">
-        <!-- Banner -->
-        <div class="h-24 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 relative">
-          <div class="absolute inset-0" style="background:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 20%22><circle cx=%2210%22 cy=%2210%22 r=%226%22 fill=%22rgba(255,255,255,0.05)%22/><circle cx=%2250%22 cy=%225%22 r=%2210%22 fill=%22rgba(255,255,255,0.05)%22/><circle cx=%2285%22 cy=%2215%22 r=%228%22 fill=%22rgba(255,255,255,0.05)%22/></svg>');"></div>
+    <div class="bg-white rounded-2xl border border-gray-100 shadow-sm mb-6 overflow-hidden fade-in relative z-10">
+      
+      <div class="h-24 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 relative overflow-hidden z-0">
+        <svg class="absolute inset-0 w-full h-full object-cover" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20" preserveAspectRatio="none">
+          <circle cx="10" cy="10" r="6" fill="rgba(255,255,255,0.05)"/>
+          <circle cx="50" cy="5" r="10" fill="rgba(255,255,255,0.05)"/>
+          <circle cx="85" cy="15" r="8" fill="rgba(255,255,255,0.05)"/>
+        </svg>
+      </div>
+
+      <div class="px-6 pb-6 relative z-10">
+        <div class="flex items-end justify-between -mt-10 mb-4 relative z-20">
+          <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 border-4 border-white shadow-lg flex items-center justify-center text-white font-extrabold text-2xl flex-shrink-0">
+            <?= $userInitial ?>
+          </div>
+          <button id="btn-edit-bio-trigger"
+            class="flex items-center gap-1.5 text-xs font-semibold text-indigo-600 border border-indigo-200 bg-white rounded-xl px-3 py-1.5 hover:bg-indigo-50 transition-all shadow-sm">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+            Edit Bio
+          </button>
         </div>
 
-        <div class="px-6 pb-6">
-          <!-- Avatar -->
-          <div class="flex items-end justify-between -mt-10 mb-4">
-            <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 border-4 border-white shadow-lg flex items-center justify-center text-white font-extrabold text-2xl flex-shrink-0"
-                 style="display:flex;align-items:center;justify-content:center;">
-              <?= $userInitial ?>
-            </div>
-            <button id="btn-edit-bio-trigger"
-              class="flex items-center gap-1.5 text-xs font-semibold text-indigo-600 border border-indigo-200 rounded-xl px-3 py-1.5 hover:bg-indigo-50 transition-all">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-              Edit Bio
-            </button>
-          </div>
+        <h2 class="text-xl font-extrabold text-gray-900 mb-0.5 relative z-20"><?= $userName ?></h2>
+        <p class="text-sm font-medium text-gray-500 mb-1"><?= $userRole ?></p>
+        <p class="text-sm text-gray-400 flex items-center gap-1.5 mb-4">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"/></svg>
+          <?= $userEmail ?>
+        </p>
 
-          <!-- Info -->
-          <h2 class="text-xl font-extrabold text-gray-900 mb-0.5"><?= $userName ?></h2>
-          <p class="text-sm font-medium text-gray-500 mb-1"><?= $userRole ?></p>
-          <p class="text-sm text-gray-400 flex items-center gap-1.5 mb-4">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"/></svg>
-            <?= $userEmail ?>
-          </p>
-
-          <!-- Badges -->
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-100">
-              <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-              Member
-            </span>
-            <span class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100">
-              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-              Verified
-            </span>
-            <span class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full bg-purple-50 text-purple-700 border border-purple-100">
-              <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/></svg>
-              Pro User
-            </span>
-          </div>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-100">
+            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            Member
+          </span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100">
+            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Verified
+          </span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full bg-purple-50 text-purple-700 border border-purple-100">
+            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/></svg>
+            Pro User
+          </span>
         </div>
       </div>
+    </div>
 
       <!-- ── BIO CARD ── -->
       <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 mb-4 fade-in">
